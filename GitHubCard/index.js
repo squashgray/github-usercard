@@ -3,6 +3,18 @@
            https://api.github.com/users/<your name>
 */
 
+
+axios.get("https://api.github.com/users/squashgray/followers")
+  .then(response => {
+    console.log(response);
+    
+    });
+  
+
+
+
+
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -53,3 +65,40 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+function followers(array) {
+
+  const div1 = document.createElement('div');
+  const img1 = document.createElement('img');
+  const div2 = document.createElement('div');
+  const h3 = document.createElement('h3');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const p4 = document.createElement('p');
+  const p5 = document.createElement('p');
+  const p6 = document.createElement('p');
+  const anc = document.createElement('a');
+
+  div1.appendChild(img1);
+  div1.appendChild(div2);
+  div2.appendChild(h3);
+  div2.appendChild(p1);
+  div2.appendChild(p2);
+  div2.appendChild(p3);
+  div2.appendChild(p4);
+  div2.appendChild(p5);
+  div2.appendChild(p6);
+  p3.appendChild(a);
+
+  div1.classList.add('card');
+  div2.classList.add('card-info');
+  h3.classList.add('name');
+  p1.classList.add('username');
+
+
+  
+  
+
+
+}
