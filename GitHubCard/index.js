@@ -4,11 +4,31 @@
 */
 
 
-axios.get("https://api.github.com/users/squashgray/followers")
-  .then(response => {
-    console.log(response);
+// axios.get("https://api.github.com/users/squashgray")
+//   .then(response => {
+//     console.log(response.data);
+//     response.data.forEach(item => {
+//       const newCard = followerCard(item);
+//       addPoint.appendChild(newCard);
+//     })
     
-    });
+    
+//     });
+
+axios.get("https://api.github.com/users/squashgray")
+  .then(response => {
+    console.log(response.data);
+    const addPoint = document.querySelector('.cards');
+    addPoint.appendChild(followerCard(response));
+
+  });
+
+
+
+
+
+
+    
   
 
 
@@ -66,7 +86,9 @@ const followersArray = [];
   bigknell
 */
 
-function followers(array) {
+const addPoint = document.querySelector('.cards');
+
+function followerCard(object) {
 
   const div1 = document.createElement('div');
   const img1 = document.createElement('img');
@@ -78,7 +100,7 @@ function followers(array) {
   const p4 = document.createElement('p');
   const p5 = document.createElement('p');
   const p6 = document.createElement('p');
-  const anc = document.createElement('a');
+  const a = document.createElement('a');
 
   div1.appendChild(img1);
   div1.appendChild(div2);
@@ -96,9 +118,21 @@ function followers(array) {
   h3.classList.add('name');
   p1.classList.add('username');
 
+  img1.src = object.data.avatar_url;
+  h3.textContent = object.data.name;
+  p1.textContent = object.data.login;
+  p2.textContent = object.data.location;
+  p4.textContent = `Followers ${object.data.followers} `;
+  p5.textContent = object.data.following;
+  p6.textContent = object.data.bio;
+  a.textContent = object.data.html_url;
+
+
+
 
   
-  
+  return div1;
 
 
 }
+
