@@ -3,6 +3,58 @@
            https://api.github.com/users/<your name>
 */
 
+
+// axios.get("https://api.github.com/users/squashgray")
+//   .then(response => {
+//     console.log(response.data);
+//     response.data.forEach(item => {
+//       const addPoint = document.querySelector('.cards'); 
+//     addPoint.appendChild(followerCard(response));
+//     })
+    
+//     });
+
+axios.get("https://api.github.com/users/squashgray")
+  .then(response => {
+    console.log(response.data);
+    const addPoint = document.querySelector('.cards'); //set the point that the new cards will go //
+    addPoint.appendChild(followerCard(response)); // this appends to the point (addPoint) using the component function (followerCard) with the response data passed in // 
+
+  });
+
+const followersArray = ["lyndsiWilliams", "ryankayne", "NickAlicaya", "EricFerguson76", "bseverino"];
+
+followersArray.forEach(follower => {
+  axios.get(`https://api.github.com/users/${follower}`)
+  .then(response => {
+    console.log(response.data);
+ 
+      const addPoint = document.querySelector('.cards'); 
+    addPoint.appendChild(followerCard(response));
+    
+    
+    });
+}
+)
+// axios.get("https://api.github.com/users/")
+//   .then(response => {
+//     console.log(response.data);
+//     response.data.forEach(item => {
+//       const addPoint = document.querySelector('.cards'); 
+//     addPoint.appendChild(followerCard(response));
+//     })
+    
+//     });
+
+
+
+    
+  
+
+
+
+
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -24,7 +76,7 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -53,3 +105,54 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+const addPoint = document.querySelector('.cards');
+
+function followerCard(object) {
+
+  const div1 = document.createElement('div');
+  const img1 = document.createElement('img');
+  const div2 = document.createElement('div');
+  const h3 = document.createElement('h3');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const p4 = document.createElement('p');
+  const p5 = document.createElement('p');
+  const p6 = document.createElement('p');
+  const a = document.createElement('a');
+
+  div1.appendChild(img1);
+  div1.appendChild(div2);
+  div2.appendChild(h3);
+  div2.appendChild(p1);
+  div2.appendChild(p2);
+  div2.appendChild(p3);
+  div2.appendChild(p4);
+  div2.appendChild(p5);
+  div2.appendChild(p6);
+  p3.appendChild(a);
+
+  div1.classList.add('card');
+  div2.classList.add('card-info');
+  h3.classList.add('name');
+  p1.classList.add('username');
+
+  img1.src = object.data.avatar_url;
+  h3.textContent = object.data.name;
+  p1.textContent = object.data.login;
+  p2.textContent = object.data.location;
+  p4.textContent = `Followers ${object.data.followers} `;
+  p5.textContent = `Following ${object.data.following} `;
+  p6.textContent = `Bio: ${object.data.bio}`;
+  a.textContent = `Profile: ${object.data.html_url}` ;
+
+
+
+
+  
+  return div1;
+
+
+}
+
