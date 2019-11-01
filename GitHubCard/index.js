@@ -8,23 +8,43 @@
 //   .then(response => {
 //     console.log(response.data);
 //     response.data.forEach(item => {
-//       const newCard = followerCard(item);
-//       addPoint.appendChild(newCard);
+//       const addPoint = document.querySelector('.cards'); 
+//     addPoint.appendChild(followerCard(response));
 //     })
-    
     
 //     });
 
 axios.get("https://api.github.com/users/squashgray")
   .then(response => {
     console.log(response.data);
-    const addPoint = document.querySelector('.cards');
-    addPoint.appendChild(followerCard(response));
+    const addPoint = document.querySelector('.cards'); //set the point that the new cards will go //
+    addPoint.appendChild(followerCard(response)); // this appends to the point (addPoint) using the component function (followerCard) with the response data passed in // 
 
   });
 
+const followersArray = ["lyndsiWilliams", "ryankayne", "NickAlicaya", "EricFerguson76", "bseverino"];
 
-
+followersArray.forEach(follower => {
+  axios.get(`https://api.github.com/users/${follower}`)
+  .then(response => {
+    console.log(response.data);
+ 
+      const addPoint = document.querySelector('.cards'); 
+    addPoint.appendChild(followerCard(response));
+    
+    
+    });
+}
+)
+// axios.get("https://api.github.com/users/")
+//   .then(response => {
+//     console.log(response.data);
+//     response.data.forEach(item => {
+//       const addPoint = document.querySelector('.cards'); 
+//     addPoint.appendChild(followerCard(response));
+//     })
+    
+//     });
 
 
 
@@ -56,7 +76,7 @@ axios.get("https://api.github.com/users/squashgray")
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -123,9 +143,9 @@ function followerCard(object) {
   p1.textContent = object.data.login;
   p2.textContent = object.data.location;
   p4.textContent = `Followers ${object.data.followers} `;
-  p5.textContent = object.data.following;
-  p6.textContent = object.data.bio;
-  a.textContent = object.data.html_url;
+  p5.textContent = `Following ${object.data.following} `;
+  p6.textContent = `Bio: ${object.data.bio}`;
+  a.textContent = `Profile: ${object.data.html_url}` ;
 
 
 
